@@ -41,5 +41,5 @@ rules:
   - apiGroups: ["rbac.authorization.k8s.io"]
     resources: ["clusterroles", "clusterrolebindings"]
     verbs: ["create", "get", "list", "watch"]
-    ```
+  ```
     
