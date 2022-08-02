@@ -213,7 +213,7 @@ users:
   user:
     token: eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJ...............SNFZmRdIf
 ```
-
+Ask them of add the context as well to bind the cluster to the user
 To test custom kubeconfig file type the following command:
 ```
 kubectl get pods -A
