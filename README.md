@@ -42,9 +42,9 @@ rules:
     resources: ["clusterroles", "clusterrolebindings"]
     verbs: ["create", "get", "list", "watch"]
   ```
-  Let us now bind ClusterRole to a Adam using ClusterRoleBinding API resource
+  Let us now bind ClusterRole to a Bijou using ClusterRoleBinding API resource
   ```
-  apiVersion: rbac.authorization.k8s.io/v1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: bijou
