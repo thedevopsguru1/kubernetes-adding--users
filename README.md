@@ -94,3 +94,73 @@ metadata:
 secrets:
   - name: eric-secret
  ```
+Now we need to create tokens using Secret API resource which will be used in our kubeconfig file.
+
+Secret for Bijou
+```
+apiVersion: v1
+kind: Secret
+metadata:
+  name: bijou-secret
+  namespace: kube-system
+  annotations:
+    kubernetes.io/service-account.name: bijou-sa
+type: kubernetes.io/service-account-token
+```
+Secret for Eric
+```
+apiVersion: v1
+kind: Secret
+metadata:
+  name: bill-secret
+  namespace: brown-fox
+  annotations:
+    kubernetes.io/service-account.name: bill-sa
+type: kubernetes.io/service-account-token
+```
+Finally, let us generate kubeconfig file for Bijou and Eric.
+Sample File:
+```
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: {cluster-ca}
+    server: {server-dns}
+  name: {cluster-name}
+contexts:
+- context:
+    cluster: {cluster-name}
+    user: {user-name}
+  name: {context-name}
+current-context: {context-name}
+kind: Config
+users:
+- name: {user-name}
+  user:
+    token: {secret-token}
+```
+We need to replace all the values within curly braces with their actual values, so let's keep going.
+
+Type the below command to fetch Certificate and Server information:
+```
+kubectl config view --flatten --minify
+
+```
+Copy certificate-authority-data, server and name field from the output and replace them with their respective fields in the sample file.
+![image](https://user-images.githubusercontent.com/107158398/182351373-0abf6ddd-7dd9-4c18-972b-c5a7bca8b3b0.png)
+
+It's now time to grab the secret token. Use the following command:
+```
+# Fetching Bijou's secret
+kubectl get secrets -A
+
+# Copy the token name starting bijou-secret
+kubectl describe secrets {token-name} -A
+
+# Fetching Eric's secret
+kubectl get secrets -A
+
+# Copy the token name starting Eric-secret
+kubectl describe secrets {token-name} -A
+```
+
