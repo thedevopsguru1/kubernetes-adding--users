@@ -163,4 +163,39 @@ kubectl get secrets -A
 # Copy the token name starting Eric-secret
 kubectl describe secrets {token-name} -A
 ```
+Copy the token value and paste it in sample file. The kubeconfig file is now complete and should look like this:
+```
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0...............Sk1TTG5Ndk1yNmYzdFNl
+    server: https://01F4..............BEA3.sk1.ap-south-1.eks.amazonaws.com
+  name: arn:aws:eks:ap-south-1:006378141167:cluster/brown-fox-cluster
+contexts:
+- context:
+    cluster: arn:aws:eks:ap-south-1:006378141167:cluster/brown-fox-cluster
+    user: eric
+  name: arn:aws:eks:ap-south-1:006378141167:cluster/brown-fox-cluster
+current-context: arn:aws:eks:ap-south-1:006378141167:cluster/brown-fox-cluster
+kind: Config
+users:
+- name: eric
+  user:
+    token: eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJ...............SNFZmRdIf
 
+```
+Note: You will have to generate a separate kubeconfing file for Bijou using his secret.
+Ask Bijou and Eric to create If they don't have it yet , a kubeconfig file.
+```
+touch ~/.kube/config
+```
+```
+vi(m) ~/.kube/config 
+```
+![image](https://user-images.githubusercontent.com/107158398/182352886-92905c3d-96b5-486a-af13-768e7afd7d58.png)
+
+
+To test custom kubeconfig file type the following command:
+```
+kubectl get pods
+```
