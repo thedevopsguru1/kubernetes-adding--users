@@ -140,6 +140,26 @@ users:
     token: {secret-token}
 ```
 We need to replace all the values within curly braces with their actual values, so let's keep going.
+Here is an empty template that we can fill as we go.
+```
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: 
+    server: 
+  name: 
+contexts:
+- context:
+    cluster: 
+    user:
+  name: 
+current-context: 
+kind: Config
+users:
+- name: 
+  user:
+    token: 
+```
 
 Type the below command to fetch Certificate and Server information:
 ```
