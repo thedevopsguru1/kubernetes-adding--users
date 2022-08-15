@@ -122,22 +122,24 @@ Finally, let us generate kubeconfig file for Bijou and Eric.
 Sample File:
 ```
 apiVersion: v1
+kind: Config
 clusters:
 - cluster:
     certificate-authority-data: {cluster-ca}
     server: {server-dns}
   name: {cluster-name}
+users:
+- name: {user-name}
+  user:
+    token: {secret-token}
 contexts:
 - context:
     cluster: {cluster-name}
     user: {user-name}
   name: {context-name}
 current-context: {context-name}
-kind: Config
-users:
-- name: {user-name}
-  user:
-    token: {secret-token}
+
+
 ```
 We need to replace all the values within curly braces with their actual values, so let's keep going.
 Here is an empty template that we can fill as we go.
