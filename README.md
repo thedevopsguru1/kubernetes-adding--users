@@ -52,7 +52,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: bijou-sa # Name is case sensitive
-  apiGroup: rbac.authorization.k8s.io
+  #apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: ClusterRole
   name: bijou
