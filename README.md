@@ -45,13 +45,14 @@ rules:
   Let us now bind ClusterRole to a Bijou using ClusterRoleBinding API resource
   ```
 apiVersion: rbac.authorization.k8s.io/v1
+# This cluster role binding allows anyone in the "manager" group to read secrets in any namespace.
 kind: ClusterRoleBinding
 metadata:
   name: bijou
 subjects:
-  - kind: ServiceAccount
-    name: bijou-sa
-    namespace: kube-system
+- kind: ServiceAccount
+  name: bijou-sa # Name is case sensitive
+  apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: ClusterRole
   name: bijou
