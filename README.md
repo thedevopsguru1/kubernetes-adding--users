@@ -173,20 +173,27 @@ Copy certificate-authority-data, server and name field from the output and repla
 ![image](https://user-images.githubusercontent.com/107158398/182351373-0abf6ddd-7dd9-4c18-972b-c5a7bca8b3b0.png)
 
 It's now time to grab the secret token. Use the following command:
+
+### Fetching Bijou's secret
 ```
-# Fetching Bijou's secret
 kubectl get secrets -A
+```
 
-# Copy the token name starting bijou-secret
-kubectl describe secrets {token-name} -A
-
-# Fetching Eric's secret
-kubectl get secrets -A
-
-# Copy the token name starting Eric-secret
+### Copy the token name starting bijou-secret
+```
 kubectl describe secrets {token-name} -A
 ```
-Copy the token value and paste it in sample file. The kubeconfig file is now complete and should look like this:
+
+### Fetching Eric's secret
+```
+kubectl get secrets -A
+```
+
+### Copy the token name starting Eric-secret
+```
+kubectl describe secrets {token-name} -A
+```
+## Copy the token value and paste it in sample file. The kubeconfig file is now complete and should look like this:
 ```
 apiVersion: v1
 clusters:
